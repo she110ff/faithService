@@ -1,0 +1,108 @@
+<br>
+    <div>
+      <div>
+        <form>
+        	<div>
+
+
+	          <div class="form-group">
+	            <label for="">날짜</label>
+	            <input type="text" name="inputCallDate" daterangepicker [options]="singleOptions" [(ngModel)]="inputCallDate"  (selected)="callDate=$event.start" (showDaterangepicker)="showRange($event, 'callDate')" />
+	          </div>
+
+	          <div class="form-group" *ngIf="timeSlots">
+	            <label>시간대</label><br>
+	          	<ss-multiselect-dropdown [options]="timeSlotsOption" [settings]="timeSlotsSetting" [(ngModel)]="timeSlots" (ngModelChange)="onChange($event)" [ngModelOptions]="{standalone: true}"></ss-multiselect-dropdown>
+	          </div>
+
+	          <div class="form-group">
+	            <label for="title">전화번호</label>
+	            <input type="text" class="form-control"  [textMask]="{mask: mask}" [(ngModel)]='phoneNo' name='phoneNo' required placeholder="010-3569-2563">
+	          </div>
+	          
+
+	          <div class="form-group">
+	            <label for="homepage">지역</label>
+	            <input type="text" class="form-control"  auto-complete  max-num-list='10'
+			      [source]="locations"
+			      (valueChanged)="valueChanged($event)" [(ngModel)]="locationName" name="locationName" placeholder="영등포구" >
+	          </div>
+
+	          <div class="form-group" *ngIf="callTypes">
+	            <label>문의</label><br>
+	          	<ss-multiselect-dropdown [options]="callTypesOption" [settings]="callTypesSetting" [(ngModel)]="callTypes" (ngModelChange)="onChange($event)" [ngModelOptions]="{standalone: true}"></ss-multiselect-dropdown>
+	          </div>
+
+
+          	</div>
+          
+          <hr>
+
+          <div class="hidden">
+
+
+
+	          <div class="form-group">
+	            <label for="beforeImage">작업 전</label>
+	              	<input type='file' id="beforeImage" />
+					<img id="blah" src="#" alt="your image" />
+	          </div>
+	          <input [(ngModel)]="beforeImage" name="beforeImage" type="hidden" value="">
+
+
+	          <div class="form-group">
+	            <label for="afterImage">작업 후</label>
+	              	<input type='file' id="afterImage" />
+					<img id="blah" src="#" alt="your image" />
+	          </div>
+	          <input [(ngModel)]="afterImage" name="afterImage" type="hidden" value="">
+
+
+          </div>
+
+
+        </form>
+
+          <hr>
+          <button class="btn btn-success" (click)="cancel()">취소</button>
+          <button class="btn btn-success" (click)="addCall()">등록</button>
+      </div>
+    </div>
+
+
+<div>
+
+
+<table class="table">
+    <thead>
+      <tr>
+        <th>날짜</th>
+        <th>시간대</th>
+        <th>전화번호</th>
+        <th>지역</th>
+        <th>진행</th>
+        <th>수정</th>
+        <th>삭제</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let call of calls" >
+
+        <td>{{ call.date | date: 'yyyy-MM-dd'}}</td>
+        <td>{{ call.timeSlot }}</td>
+        <td>{{ call.phoneNo }}</td>
+        <td>{{ call.locationName }}</td>
+        <td>{{ call.callType }}</td>
+        <td>
+          <button  (click)="modifyCall(call.$key)">M</button>
+        </td>       
+        <td>
+          <button  (click)="removeItemFromList( call.$key )">D</button>
+        </td>
+      </tr>
+     
+    </tbody>
+  </table>
+
+
+</div>
