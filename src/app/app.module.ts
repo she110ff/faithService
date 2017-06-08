@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 
 import { RouterModule } from '@angular/router';
 import { rootRouterConfig } from './app.routes';
+import { firebaseConfig } from './env.component';
 
 import { AppComponent } from './app.component';
 import { AngularFireModule } from 'angularfire2';
@@ -22,19 +23,20 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 
 // Must export the config
-export const firebaseConfig = {
+/*export const firebaseConfig = {
   apiKey: "AIzaSyDNQ6PDIIlFB7yMJLe7Yt5YfVaC0jNDg7U",
   authDomain: "faithservice2017.firebaseapp.com",
   databaseURL: "https://faithservice2017.firebaseio.com",
   projectId: "faithservice2017",
   storageBucket: "faithservice2017.appspot.com",
   messagingSenderId: "300912220492"
-};
+};*/
 @NgModule({
   declarations: [
     AppComponent,
     AnalyticBrowserComponent,
     CallsComponent,
+
   ],
   imports: [
     BrowserModule,
